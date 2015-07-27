@@ -1,3 +1,4 @@
+![markdownBrauser](public/favicon.png)
 # MarkdownBrauser
 
 An emberjs based web front-end for markdown document repositories.
@@ -5,7 +6,7 @@ An emberjs based web front-end for markdown document repositories.
 Check the [about markdownBrauser](public/_about.md) for more details.
 
 Contents below are ember-cli generated and only outline the build process.
-Pre-built markdownBrauser downloads can be found on the [releases page](releases/).
+Pre-built markdownBrauser downloads can be found on the [releases page](../../releases).
 
 # README - Building markdownBrauser
 
