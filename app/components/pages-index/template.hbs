@@ -1,0 +1,64 @@
+
+{{input autofocus=true class="form-control" type="text" placeholder="Search documents by title, filename or message" value=query}}
+
+<table class="table table-striped table-packages">
+  <thead>
+    <tr>
+      <th>
+        <a href="#" {{action "sortBy" "page_title"}} class="sort-button">
+          Document title
+        </a>
+      </th>
+
+      <th class="hidden-xs">
+        <a href="#" {{action "sortBy" "git_modified"}} class="sort-button">
+          Last updated / by
+        </a>
+      </th>
+      <th class="hidden-xs">Commit message</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  {{#if model}}
+  {{#each currentPageContent key="@identity" as |item|}}
+    {{#unless item.is_directory}}
+    {{#unless item.is_internal}}
+    <tr>
+      <td>
+        {{#link-to 'pagecontent' item.id tagName="a"}}
+          {{item.page_title}}
+        {{/link-to}}
+        <br/>
+        <small>
+          <a class="text-muted" href="../pages/{{item.id}}">{{item.id}}</a>
+          <!-- 500 item.page_path X item.page_path Z -->
+        </small>
+
+      </td>
+
+      {{#if item.git_modified}}
+      <td>{{ago item.git_modified}}<br/><small>{{item.git_username}}</small></td>
+      <td>{{item.git_message}}</td>
+      {{else}}
+      <!-- what if no git repo at all?-->
+       <td colspan="2"><span class="text-warning">uncomitted</span></td>
+      {{/if}}
+
+    </tr>
+    {{/unless}}
+    {{/unless}}
+  {{/each}}
+  {{else}}
+    Loading ...
+  {{/if}}
+
+    <!-- em-pagination
+      list=sortedPackages
+      page=page
+      limit=limit
+      total=numFound
+      previous="previousPage"
+      next="nextPage" -->
+  </tbody>
+</table>

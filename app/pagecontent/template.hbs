@@ -1,0 +1,29 @@
+{{! Display a single markdown page}}
+
+{{format-markdown model.page_content}}
+
+<p class="docmeta">
+  Page source:
+  {{#if model.isInternal}}
+    <!-- markdownBrauser internal/integrated page -->
+    <a href="{{model.file_name}}">{{model.file_name}}</a>
+    (part of markdownBrauser)
+  {{else}}
+    <a href="../pages/{{model.id}}">{{model.id}}</a>
+  {{/if}}
+    |
+  Last modification: fixme who fixme when
+    |
+  Commit Message: none yet.
+  <i {{action "zapMeta"}}>zap!</i>
+</p>
+
+<!-- FIXME
+{{model}} YES:
+{{#if model.page}}
+{{model.page}}
+{{else}}
+Wa? {{model.page}}
+{{/if}}
+-->
+<!-- add: last edited by ... ago<br/> commit message: msg -->

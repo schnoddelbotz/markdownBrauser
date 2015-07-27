@@ -1,0 +1,115 @@
+@import 'ember-paper';
+
+/*
+ * app.css - part of markdownBrauser
+ *
+ * included as the last .css, overrides templates used.
+ *
+ */
+
+.mdc-a { color: #92407e }
+.mdc-b { color: #c1335d }
+.mdc-c { color: #f38d36 }
+.mdc-d { color: #00adc4 }
+.mdc-e { color: #91c575 }
+.mdc-f { color: #b9c2c4 }
+.mdc-g { color: #323333 }
+
+@media print {
+  #sidebar { display: none }
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+}
+
+
+
+div#page-wrapper div.container > div { margin-top:80px; }
+nav.navbar { border-bottom: 1px solid #ccc; background:#fffffa; }
+p.docmeta { font-size:0.8em; color:#999; margin-top:3em; border-top:1px solid #aaa}
+li.appname { margin-top:15px; margin-bottom:15px; font-weight:bold; }
+
+.mdb-internal { font-size:0.8em; }
+.mdb-internal a { color:#c1335d; }
+
+ /*
+    Sticky footer styles
+    http://getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css
+ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background:#fffffa;
+}
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+  opacity: 0.4;
+}
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+code {
+  font-size: 80%;
+}
+
+h1.page-header {
+  /* margin-top:0px; */
+}
+
+
+/* EmberJS-generated navbar menu items would use hair otherwise */
+a, .pointer { cursor: pointer; }
+ul.nav.ember-view {
+  padding-left: 20px;
+}
+ul.nav li.is-selected {
+  background:#eee;
+}
+
+
+/* eof app.css */

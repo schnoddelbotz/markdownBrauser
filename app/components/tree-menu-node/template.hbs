@@ -1,0 +1,21 @@
+
+{{#if attrs.node.hasChildren}}
+  <li {{action "toggleExpanded"}}>
+    <a href="#">
+      {{#if attrs.node.isExpanded}}[&ndash;]{{else}}[+]{{/if}}&nbsp;<b>{{attrs.node.id}}</b>
+    </a>
+  </li>
+{{else}}
+  <li {{action "selectNode" attrs.node}} class="{{isSelected}} {{attrs.node.style}}">
+    {{#link-to 'pagecontent' attrs.node.id}}{{attrs.node.page_title}}{{/link-to}}
+  </li>
+{{/if}}
+
+
+{{#if attrs.node.isExpanded}}
+  {{#each attrs.node.children as |child|}}
+    <ul class="nav ember-view">
+      {{tree-menu-node node=child action="selectNode" selectedNode=selectedNode}}
+    </ul>
+  {{/each}}
+{{/if}}

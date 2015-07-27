@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MarkdownBrauser</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    {{content-for 'head'}}
+
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/markdown-brauser.css">
+
+    {{content-for 'head-footer'}}
+  </head>
+  <body>
+
+    {{content-for 'body'}}
+
+    <script src="assets/vendor.js"></script>
+    <script src="assets/markdown-brauser.js"></script>
+
+    {{content-for 'body-footer'}}
+
+    <noscript>
+    <div class="page-container">
+      <div class="container">
+          <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-md-10">
+              <div class="jumbotron">
+                <h1><span class="label label-danger">Oooops</span> ...</h1>
+                <p><br>Please enable JavaScript in your browser to use <span class="mdc-c">markdown</span><span class="mdc-e">Brauser</span>.
+                </p>
+                <p>You may also browse raw markdown pages <a href="../pages/">here</a>.</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </noscript>
+
+  </body>
+</html>

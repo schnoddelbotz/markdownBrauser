@@ -1,0 +1,16 @@
+<!-- sidebar -->
+<ul class="nav nav-sidebar">
+  {{#link-to 'index' tagName="li" class="appname"}}
+    <a href="#/">
+      <span class="mdc-c">markdown</span><span class="mdc-e">Brauser</span>
+    </a>
+  {{/link-to}}
+
+  {{#each controller.sortedPages as |item|}}
+    {{#unless item.parent_id}}
+      {{tree-menu-node node=item action="selectNode" selectedNode=selectedNode}}
+    {{/unless}}
+  {{/each}}
+
+</ul>
+
