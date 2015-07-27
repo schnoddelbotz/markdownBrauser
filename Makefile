@@ -23,12 +23,7 @@ remote:
 	rm -rf dist markdownBrauser
 	rm -f public/pages public/pageindex.json
 	ember build --environment production
-	perl -pi -e 's@#MDB_GITREV#@$(GITREV)@' dist/_about.md
-	perl -pi -e 's@markdownBrauser.zip@markdownBrauser-$(GITREV).zip@' dist/_about.md
-	mv dist markdownBrauser
-	zip -rv markdownBrauser-$(GITREV).zip markdownBrauser
-	mv markdownBrauser dist
-	mv markdownBrauser-$(GITREV).zip dist/
+	perl -pi -e 's@#MDB_VERSION#@$(DISTVERSION)@' dist/_about.md
 	rsync -av --delete dist/ slab1:homepage/md/
 
 git-reset:
