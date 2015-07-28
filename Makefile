@@ -8,6 +8,10 @@ build: node_modules bower_components
 	ember build --environment production
 	perl -pi -e 's@#MDB_VERSION#@$(DISTVERSION)@g' dist/_about.md
 
+zip: build
+	mv dist markdownBrauser
+	zip -rv markdownBrauser-$(DISTVERSION).zip markdownBrauser
+
 node_modules:
 	npm install
 
