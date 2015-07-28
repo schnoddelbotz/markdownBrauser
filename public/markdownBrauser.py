@@ -2,7 +2,7 @@
 
 # ideally to be called from githook on the md repo in question
 
-import os, sys, getopt, re, json, time, dateutil.parser, collections, subprocess
+import os, sys, getopt, re, json, time, collections, subprocess
 
 ExecutionResult = collections.namedtuple('ExecutionResult', 'status, stdout, stderr')
 
@@ -19,9 +19,9 @@ def _execute(cmd):
 def get_git_log_for_file(filename):
   # http://blog.lost-theory.org/post/how-to-parse-git-log-output/
   GIT_COMMIT_FIELDS = ['id', 'author_name', 'author_email', 'date', 'message']
-  GIT_LOG_FORMAT = ['%H', '%an', '%ae', '%ad', '%s']
+  GIT_LOG_FORMAT = ['%H', '%an', '%ae', '%ct', '%s']
   GIT_LOG_FORMAT = '%x1f'.join(GIT_LOG_FORMAT) + '%x1e'
-  p = _execute( ['git','log','--date=iso8601-strict','--format="%s"' % GIT_LOG_FORMAT, filename ] )
+  p = _execute( ['git','log','-1','--format="%s"' % GIT_LOG_FORMAT, filename ] )
   log = p.stdout
   log = log.strip('\n\x1e').split("\x1e")
   log = [row.strip().split("\x1f") for row in log]

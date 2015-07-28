@@ -5,7 +5,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   page_title: DS.attr('string'), // make it Ember.SafeString to support h1...<small>?
   file_name: DS.attr('string'),
-  git_modified: DS.attr('string'),
+  git_modified: DS.attr('number'),
   git_username: DS.attr('string'),
   git_message: DS.attr('string'),
   style: DS.attr('string'),

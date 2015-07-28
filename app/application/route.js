@@ -16,7 +16,7 @@ export default Ember.Route.extend({
             page_title: "About markdownBrauser",
             file_name: "_about",
             is_internal: true,
-            git_modified: "2015-07-19T20:53:20+02:00",
+            git_modified: 1437928242,
             git_message: "n/a - markdownBrauser internal page",
             style: "mdb-internal"
           }
@@ -27,7 +27,7 @@ export default Ember.Route.extend({
             page_title: "Syntax documentation",
             file_name: "_syntax",
             is_internal: true,
-            git_modified: "2015-07-19T20:53:20+02:00",
+            git_modified: 1437928242,
             git_message: "n/a - markdownBrauser internal page",
             style: "mdb-internal"
           }

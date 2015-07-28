@@ -20,8 +20,8 @@ export default Ember.Component.extend({
     ['page_title', 'file_name', 'git_message'], 'query', { conjunction: 'and' }
   ).readOnly(),
 
-  sortAscending: true,
-  sortProperty: 'page_title',
+  sortAscending: true, // huh??? does the inverse?
+  sortProperty: 'git_modified',
 
   sortedPages: Ember.computed('filteredPages', 'sortProperty', 'sortAscending', function() {
     if (!this.get('filteredPages')) {

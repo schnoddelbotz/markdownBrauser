@@ -38,7 +38,7 @@
       </td>
 
       {{#if item.git_modified}}
-      <td>{{ago item.git_modified}}<br/><small>{{item.git_username}}</small></td>
+      <td>{{ago item.git_modified "X"}}<br/><small>{{item.git_username}}</small></td>
       <td>{{item.git_message}}</td>
       {{else}}
       <!-- what if no git repo at all?-->
