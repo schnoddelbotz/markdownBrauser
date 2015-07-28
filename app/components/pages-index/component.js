@@ -11,6 +11,11 @@ export default Ember.Component.extend({
   page: 1,
   limit: 20,
 
+  didInsertElement: function() {
+    // autofocus somehow only works in chrome (?), sometimes...
+    Ember.$('#md-query').focus();
+  },
+
   filteredPages: computedFilterByQuery('model',
     ['page_title', 'file_name', 'git_message'], 'query', { conjunction: 'and' }
   ).readOnly(),
@@ -48,18 +53,29 @@ export default Ember.Component.extend({
       this.set('page', 1);
     },
 
+    gotoFirstHit: function() {
+      var results = this.get('currentPageContent');
+      if (results.length===1) {
+        var desired_page = results[0].get('id');
+        console.log(desired_page);
+        // deprecated...
+        //this.controller.transitionTo('pagecontent', desired_page);
+        // even more ugly, but works(tm) ... for now, FIXME.
+        window.document.location = '#/' + desired_page;
+      }
+      // else, do nothing for now ... but later?:
+      // gotoOtherHit by key up down, hilight it, enter = go?
+    },
     sortBy: function(propertyKey) {
       if (propertyKey === this.get('sortProperty')) {
         this.toggleProperty('sortAscending');
       }
       this.set('sortProperty', propertyKey);
     },
-
     nextPage: function() {
       this.incrementProperty('page');
       window.scrollTo(0, SCROLL_TO_POSITION);
     },
-
     previousPage: function() {
       this.decrementProperty('page');
       window.scrollTo(0, SCROLL_TO_POSITION);
