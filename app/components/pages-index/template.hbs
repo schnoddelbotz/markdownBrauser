@@ -1,5 +1,6 @@
 
 {{input id="md-query" autofocus=true insert-newline="gotoFirstHit" class="form-control" type="text" placeholder="Search documents by title, filename or message" value=query}}
+<!-- up and down keys on input should highlight result row, enter should goto (if more than one hit) -->
 
 <table class="table table-striped table-packages">
   <thead>
@@ -22,8 +23,6 @@
 
   {{#if model}}
   {{#each currentPageContent key="@identity" as |item|}}
-    {{#unless item.is_directory}}
-    {{#unless item.is_internal}}
     <tr>
       <td>
         {{#link-to 'pagecontent' item.id tagName="a"}}
@@ -46,8 +45,6 @@
       {{/if}}
 
     </tr>
-    {{/unless}}
-    {{/unless}}
   {{/each}}
   {{else}}
     Loading ...
