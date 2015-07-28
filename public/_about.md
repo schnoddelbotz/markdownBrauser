@@ -78,8 +78,7 @@ markdownBrauser uses twitter bootstrap by default. To brew your own Brauser:
 Pure fun stuff. On github, because it-works-for-me ... Issues:
 
  * put document meta data and link to md src into page view (relations puff...)
- * ~~use ember-cli-gzip +keepOriginals, provide .htaccess -- just disabled in `ember-cli-build.js`~~
- * ~~use .md document header as doc index's title~~ (ok for #, not for = x =)
+ * ~~use .md document header as doc index's title~~ (ok for # foobar, not for = foobar =)
  * ~~display uncomitted files / non-comitted changes~~ ... improve
  * bootstrap markup is still slightly messed up? fix menu screen resize
  * add %%-style meta information in head like [here](http://jbl.web.cern.ch/jbl/doc/manpages/) (or even variables)?

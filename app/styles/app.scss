@@ -16,7 +16,7 @@
 .mdc-g { color: #323333 }
 
 @media print {
-  #sidebar { display: none }
+  #sidebar, .non-printing { display: none }
 }
 
 /* collapsed sidebar styles */

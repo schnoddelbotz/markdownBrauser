@@ -42,7 +42,9 @@ export default Ember.Route.extend({
   afterModel: function() {
     window.setTimeout( function(){
       Ember.$('pre code').each(function(i, block) {
-        highlightBlock(block);
+        if ( ! Ember.$(block).hasClass("none")) {
+          highlightBlock(block);
+        }
       });
     }, 50); //// HACKHACKHACK
   },

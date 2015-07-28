@@ -175,3 +175,15 @@ ForEach ($service in $services) {
 }
 
 ```
+
+### Syntax highlighting example - none
+
+In most cases, language auto detection will work fine. To exclude a codeblock from
+automatic syntax highlighting, use "none" as the language specifier, (i.e. begin code
+block with "```none".)
+
+```none
+
+  >> No syntax highlighting is applied here <<
+
+```
