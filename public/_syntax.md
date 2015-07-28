@@ -97,13 +97,21 @@ Table support available thanks to showdownJS 1.2.0; this test taken
 markdownBrauser includes KaTeX to render LaTeX math formulas inside the browser.
 
 Formulas should be wrapped inside two dollar signs, without whitespace
-between dollar signs and formula. Example output:
+between dollar signs and formula. They can be used inline like $$E  =  mc^{2}$$,
+on regular paragraphs like here:
 
-$$f(n) = n^5 + 4n^2 + 2 |_{n=17}$$
+$$\left.\frac{x^3}{3}\right|_0^1$$
 
-Formula has been taken from [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
-Some more complex example formulas didn't work directly for me... YMMV!
+... or also inside block quotes:
 
+> $$f(n) = n^5 + 4n^2 + 2 |_{n=17}$$
+
+Examples have been taken from [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics),
+but some more complex example formulas didn't work for me... **YMMV**!
+
+markdownBrauser will report problematic formulas inline -- example:
+
+$$f(n) = n^5 + \foobar[baz]$$
 
 ## Documenting keyboard shortcuts
 

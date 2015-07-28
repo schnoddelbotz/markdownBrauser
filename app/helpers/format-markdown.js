@@ -14,10 +14,14 @@ export function formatMarkdown(params) {
     markdownContent = markdownContent.replace(
         /(\$\$)(?=\S)([^\r]*?\S[\$]*)\1/g,
         function(line, dollars, formula){
-          //console.log('render Formula: "'+formula+'"');
-          // FIXME should try {} ! testcase: $$` breaks this
           // FIXME inline vs block?
-          return window.katex.renderToString(formula);
+          var content = '\n\n<div class="bg-danger parser-error">\n <h4>Error</h4>';
+          try {
+            content = window.katex.renderToString(formula);
+          } catch(err) {
+            content = content + '\n' + err + '</div>\n\n';
+          }
+          return content;
         }
     );
 
