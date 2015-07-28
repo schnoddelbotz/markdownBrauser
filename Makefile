@@ -19,11 +19,7 @@ serve:
 	(cd public ; ./markdownBrauser.py)
 	ember serve
 
-remote:
-	rm -rf dist markdownBrauser
-	rm -f public/pages public/pageindex.json
-	ember build --environment production
-	perl -pi -e 's@#MDB_VERSION#@$(DISTVERSION)@' dist/_about.md
+remote: build
 	rsync -av --delete dist/ slab1:homepage/md/
 
 git-reset:
