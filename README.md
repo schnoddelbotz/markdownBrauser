@@ -1,5 +1,5 @@
 ![markdownBrauser](public/favicon.png)
-# MarkdownBrauser
+# markdownBrauser
 
 An emberjs based web front-end for markdown document repositories.
 

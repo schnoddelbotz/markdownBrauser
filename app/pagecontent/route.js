@@ -1,12 +1,13 @@
 import Ember from 'ember';
 import { highlightBlock } from 'highlight.js';
+import config from 'markdown-brauser/config/environment';
 
 export default Ember.Route.extend({
   model: function(params) {
     var store = this.store;
 
     // use static markdown file
-    var url = '../pages/'+params.id;//+'.md';
+    var url = config.markdownPath + '/'+ params.id;
     if (params.id.substring(0,1) === '_') {
       // markdownBrauser "internal" page
       url = params.id+'.md';

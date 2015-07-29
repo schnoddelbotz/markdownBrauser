@@ -1,11 +1,39 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+
+  var customOptions = {
+    locationType: 'hash',
+    // *** no trailing slashes here: ***
+    markdownPath: '../pages',
+    pageindexPath: '..'
+    // showAboutPageLink
+    // showSyntaxPageLink
+    // appTitle = 'markdownBrauser'
+    // docIndexHeader = 'markdown document index'
+    // ...
+  }
+  // FIXME doesnt work and looks ugly from the start
+  if (typeof locationType != 'undefined') {
+    customOptions.locationType = locationType;
+  }
+  if (typeof markdownPath != 'undefined') {
+    customOptions.markdownPath = markdownPath;
+  }
+  if (typeof pageindexPath != 'undefined') {
+    customOptions.pageindexPath = pageindexPath;
+  }
+
   var ENV = {
+    // markdownBrauser
+    markdownPath: customOptions.markdownPath,
+    pageindexPath: customOptions.pageindexPath,
+    // emberjs
+    locationType: customOptions.locationType,
     modulePrefix: 'markdown-brauser',
     environment: environment,
     baseURL: null, // '/', nearly deprecated, use null to disable
-    locationType: 'hash',
+
     //locationType: 'auto',
     EmberENV: {
       FEATURES: {
