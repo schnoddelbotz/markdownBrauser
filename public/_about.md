@@ -18,6 +18,7 @@ webserver to run. May suck for SEO purposes in its current form.
  - retreives raw `.md` markdown files from your webserver, does all rendering client-side
  - [KaTeX](https://github.com/Khan/KaTeX)-based LaTeX math formula rendering
  - [twitter bootstrap](http://getbootstrap.com/)-based layout
+ - search bar on index page using [ember-cli-filter-by-query](https://www.npmjs.com/package/ember-cli-filter-by-query) (search by filename, doctitle or commit message only). Relevant bits stolen from [emberaddons.com](https://github.com/gcollazo/ember-cli-addon-search)
  - uses a single JSON 'page index' file to make docs 'browsable' for clients
  - includes a git repository hook to maintain page index automatically
  - [git](http://git-scm.org) integration (displays commit messages as changelog etc.)
@@ -32,7 +33,8 @@ Installing or updating markdownBrauser only involves unpacking the
 [latest markdownBrauser release](https://github.com/schnoddelbotz/markdownBrauser/releases)
 on your webserver. It simply expects your documents to live
 in a directory next to the unpacked markdownBrowser, in a folder
-called `pages/` -- see tree outline below.
+called `pages/` by default. The `pages/` folder is expected to
+contain markdown files with `.md` file extension.
 
 An example installation, assuming:
 
@@ -40,7 +42,7 @@ An example installation, assuming:
  - you have write access to its `DocumentRoot`
  - `DocumentRoot` lives in `/var/www/html`
  - your markdown documents live in `/var/www/html/pages`
-   (and can be retreived via http://example.com/pages/)
+   (and can already be retreived via http://example.com/pages/)
  - `/var/www/html/pages` should be a git checkout (will become optional...)
  - you want your raw .md markdown `pages/` to be rendered
    when browsing to `http://example.com/browse-md/`
@@ -55,8 +57,9 @@ curl -LO https://github.com/schnoddelbotz/markdownBrauser/releases/download/v#MD
 # unpack download, rename unpacked directory to desired name
 unzip markdownBrauser-#MDB_VERSION#.zip
 mv markdownBrauser browse-md
+rm markdownBrauser-#MDB_VERSION#.zip
 
-# generate /var/www/html/pageindex.json (out of ./pages/ directory)
+# generate /var/www/html/pageindex.json (from contents of ./pages/ directory)
 browse-md/markdownBrauser.py
 ```
 
@@ -71,23 +74,60 @@ markdownBrauser uses twitter bootstrap by default. To brew your own Brauser:
  * run `make`, given at least nodejs is present
  * the `dist/` directory will contain your own Brauser
 
+## Access restrictions
+
+As markdownBrauser more or less just acts as if it was a browser
+plugin to render markdown documents off the web, all access control
+has to be done on your `pages/` directory effectively serving
+your markdown documents. markdownBrauser will report 40x errors
+with adequate user messages and present regular browser pop-ups for basic
+authentication protected `.md` files.
+
 ## To-Do / Bugs
 
 **Development status:**
 
 Pure fun stuff. On github, because it-works-for-me ... Issues:
 
- * put document meta data and link to md src into page view (relations puff...)
- * ~~use .md document header as doc index's title~~ (ok for # foobar, not for = foobar =)
- * ~~display uncomitted files / non-comitted changes~~ ... improve
- * bootstrap markup is still slightly messed up? fix menu screen resize
- * add %%-style meta information in head like [here](http://jbl.web.cern.ch/jbl/doc/manpages/) (or even variables)?
- * keyboard navigation through docs/results (1 result, enter->go)?
- * fulltext search/engine support?
- * might want to switch to marked markdown converter (+ better highlighting integration, +full? GFM)
- * image broken when using ember serve ('static' name)
- * there would be hyphenator.js, but also CSS3 hyphens
- * strikestrough: wrap to have extra-strikethrough color
- * add browser-local-store knob
- * sorting is broken (reduce limit...), model should exclude directories
- * indexer code needs cleanup
+#### General
+
+ - [ ] put document meta data and link to md src into page view (only link done yet)
+ - [ ] use .md document header as doc index's title. ok for # foobar, not for = foobar = yet
+ - [ ] display uncomitted files / non-comitted changes ... improve (e.g. stat file for mtime)
+ - [ ] bootstrap markup is still slightly messed up? fix menu screen resize
+ - [ ] add %%-style meta information in head like [here](http://jbl.web.cern.ch/jbl/doc/manpages/) (or even variables)?
+ - [ ] put sense into generated tests/
+ - [ ] add a Makefile target to build PDFs using
+
+#### Search
+
+ - [x] a single search result can be directly accessed by pressing enter
+ - [ ] keyboard navigation (<kbd>↑</kbd> / <kbd>↓</kbd>) through results (highlight active row, enter go)
+ - [ ] fulltext search/engine support? markdownBrauser does **not** index/search document content yet!
+ - [ ] might want to switch to marked markdown converter (+ better highlighting integration, +full? GFM)
+ - [ ] image broken when using ember serve ('static' name)
+ - [ ] strikestrough: wrap to have extra-strikethrough color
+ - [ ] add browser-local-store knob
+ - [ ] sorting of pages contained in subdirectories inside menu works
+ - [ ] indexer code needs cleanup + maybe include document TOCs for search?
+ - [ ] pageindex.json might be zipped as well
+
+#### To be made optional / configurable
+
+ - [ ] make options work without need for rebuild
+ - [ ] optionally include/enable [hyphenator.js](http://mnater.github.io/Hyphenator/)
+ - [ ] `locationType` ([docs](http://guides.emberjs.com/v1.10.0/routing/specifying-the-location-api/)) configurable
+ - [ ] `pages` folder name / location (default: `../pages`)
+
+## alternatives
+
+When serving markdown-derived static html documents is a requirement
+and you're looking for a mature product, you may without doubt
+better be off by taking [sources](https://github.com/emberjs/guides) from
+[http://guides.emberjs.com/](http://guides.emberjs.com/).
+
+If JavaScript is unavailable on the client, markdownBrauser will
+display its `<noscript>` message, which lets visitors at least browse the
+`pages` directory -- given `Options +Indexes` was set inside your
+apache configuration.
+
