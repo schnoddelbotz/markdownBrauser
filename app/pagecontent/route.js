@@ -13,8 +13,11 @@ export default Ember.Route.extend({
       url = params.id+'.md';
     }
 
-    // get related page record
+    // get related page record from index (should be able to fail for non-indexed pages)
     var pageRecord = this.store.find('page', params.id);
+    this.store.find('page', params.id).then(function(p) {
+      Ember.$(document).attr('title', p.get('page_title'));
+    });
 
     // uuuh ... e-d should catch this if it wasn't a hack here...
     var existantRecord = null;
@@ -43,6 +46,7 @@ export default Ember.Route.extend({
     }
   },
   afterModel: function() {
+    // apply syntax highlighting to all <code> blocks.
     window.setTimeout( function(){
       Ember.$('pre code').each(function(i, block) {
         if ( ! Ember.$(block).hasClass("none")) {
