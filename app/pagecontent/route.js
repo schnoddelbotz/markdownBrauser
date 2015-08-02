@@ -13,6 +13,9 @@ export default Ember.Route.extend({
       url = params.id+'.md';
     }
 
+    // get related page record
+    var pageRecord = this.store.find('page', params.id);
+
     // uuuh ... e-d should catch this if it wasn't a hack here...
     var existantRecord = null;
     var test = store.peekAll('pagecontent');
@@ -30,11 +33,10 @@ export default Ember.Route.extend({
         var page = {
           'id': params.id, // FIXME .hashcode()?!
           'page_content': data,
-          'page': params.id, // DOES NOT WORK
+          'page': pageRecord,
           'file_name': params.id+'.md'
         };
         // create a real e-d record to enjoy computed propoerties
-
         var record = store.createRecord('pagecontent', page);
         return record;
       });

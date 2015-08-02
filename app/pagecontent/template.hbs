@@ -3,7 +3,7 @@
 {{format-markdown model.page_content}}
 
 <p class="docmeta">
-  Page source:
+  Source:
   {{#if model.isInternal}}
     <!-- markdownBrauser internal/integrated page -->
     <a href="{{model.file_name}}">{{model.file_name}}</a>
@@ -12,21 +12,13 @@
     <a href="{{markdownPath}}/{{model.id}}">{{model.id}}</a>
   {{/if}}
     |
-  Last modification: fixme who fixme when
+  Modified by {{model.page.git_username}} on
+  {{moment-format model.page.git_modified "MMMM Do YYYY" "X"}}
     |
-  Commit Message: none yet.
-  <i class="non-printing pointer" {{action "zapMeta"}}>zap!</i>
+  Log message: {{model.page.git_message}}
+  <i class="non-printing pointer" {{action "zapMeta"}}>| zap!</i>
 </p>
 
 <!-- FIXME
-
 footer should be fixed at bottom, at least for print?
-
-{{model}} YES:
-{{#if model.page}}
-{{model.page}}
-{{else}}
-Wa? {{model.page}}
-{{/if}}
 -->
-<!-- add: last edited by ... ago<br/> commit message: msg -->
