@@ -3,8 +3,7 @@ import { module, test } from 'qunit';
 
 module('Unit | Helper | format markdown');
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  var result = formatMarkdown(42);
-  assert.ok(result);
+test('markdown to html works', function(assert) {
+  var result = formatMarkdown(['# Hello World']).toHTML();
+  assert.equal(result, "<h1 class=\"page-header\" id=\"helloworld\">Hello World</h1>");
 });
