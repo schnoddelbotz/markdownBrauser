@@ -9,7 +9,7 @@ repositories.
 Looks like a wiki, but lacks in-browser editing, feels a bit like
 github repository frontend... but markdownBrauser is really dedicated
 to markdown -- and needs nothing more than a simple, static content
-webserver to run. May suck for SEO purposes in its current form.
+webserver to run.
 
 ## Features
 
@@ -91,43 +91,48 @@ Pure fun stuff. On github, because it-works-for-me ... Issues:
 
 #### General
 
- - [ ] put document meta data and link to md src into page view (only link done yet)
+ - [x] document meta data and link to md src in single page view
  - [ ] use .md document header as doc index's title. ok for # foobar, not for = foobar = yet
  - [ ] display uncomitted files / non-comitted changes ... improve (e.g. stat file for mtime)
  - [ ] bootstrap markup is still slightly messed up? fix menu screen resize
  - [ ] add %%-style meta information in head like [here](http://jbl.web.cern.ch/jbl/doc/manpages/) (or even variables)?
  - [ ] put sense into generated tests/
- - [ ] add a Makefile target to build PDFs using
+ - [ ] might want to switch to marked markdown converter (+ better highlighting integration, +full? GFM)
+ - [ ] strikestrough: wrap to have extra-strikethrough color
+ - [ ] add browser-local-store knob
+ - [ ] sorting of pages contained in subdirectories inside menu works
+ - [ ] indexer code needs cleanup + maybe include document TOCs for search+display?
+ - [ ] pageindex.json might be zipped as well
 
 #### Search
 
  - [x] a single search result can be directly accessed by pressing enter
  - [ ] keyboard navigation (<kbd>↑</kbd> / <kbd>↓</kbd>) through results (highlight active row, enter go)
  - [ ] fulltext search/engine support? markdownBrauser does **not** index/search document content yet!
- - [ ] might want to switch to marked markdown converter (+ better highlighting integration, +full? GFM)
- - [ ] image broken when using ember serve ('static' name)
- - [ ] strikestrough: wrap to have extra-strikethrough color
- - [ ] add browser-local-store knob
- - [ ] sorting of pages contained in subdirectories inside menu works
- - [ ] indexer code needs cleanup + maybe include document TOCs for search?
- - [ ] pageindex.json might be zipped as well
 
 #### To be made optional / configurable
 
- - [ ] make options work without need for rebuild
+ - [x] make options work without need for rebuild using `custom-config.js` (must be enabled in `index.html`)
+ - [x] `locationType` ([docs](http://guides.emberjs.com/v1.10.0/routing/specifying-the-location-api/)) configurable
+ - [x] `markdownPath` - relative path to `.md` documents (default: `../pages`)
+ - [x] `pageindexPath` - relative path to `pageindex.json` (default: `..`)
  - [ ] optionally include/enable [hyphenator.js](http://mnater.github.io/Hyphenator/)
- - [ ] `locationType` ([docs](http://guides.emberjs.com/v1.10.0/routing/specifying-the-location-api/)) configurable
- - [ ] `pages` folder name / location (default: `../pages`)
+
+## accessibility
+
+If JavaScript is unavailable on the client, markdownBrauser will
+display its `<noscript>` message, which lets visitors at least browse the
+`pages` directory -- given `Options +Indexes` was set inside your
+apache configuration.
+
+Google might be able to pick up content rendered via JavaScript,
+as markdownBrauser does, according to [this blogpost](http://googlewebmastercentral.blogspot.ch/2014/05/understanding-web-pages-better.html).
 
 ## alternatives
 
 When serving markdown-derived static html documents is a requirement
 and you're looking for a mature product, you may without doubt
 better be off by taking [sources](https://github.com/emberjs/guides) from
-[http://guides.emberjs.com/](http://guides.emberjs.com/).
-
-If JavaScript is unavailable on the client, markdownBrauser will
-display its `<noscript>` message, which lets visitors at least browse the
-`pages` directory -- given `Options +Indexes` was set inside your
-apache configuration.
+[http://guides.emberjs.com/](http://guides.emberjs.com/). Or maybe
+[http://jekyllrb.com/](Jekyll)?
 

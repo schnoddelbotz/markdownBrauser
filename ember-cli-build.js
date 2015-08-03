@@ -10,7 +10,7 @@ module.exports = function(defaults) {
     },
     // http://codesandnotes.com/ember-js/exluding-favicons-from-ember-cli-fingerprinting/
     fingerprint: {
-      exclude: ['favicon']
+      exclude: ['favicon','custom-config','emberjs-logo']
     }
   });
 

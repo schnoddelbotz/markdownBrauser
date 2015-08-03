@@ -48,7 +48,7 @@ tempus finibus, augue nisl consectetur tortor, vitae accumsan lorem diam sit ame
 
 ##### Header 5: Look, sizable images!
 
-![http://emberjs.com](vendor/emberjs-c8e2ad9b66688fc38ebf90363f0ab6c7.png =100x*)
+![http://emberjs.com](emberjs-logo.png =100x*)
 
 When refering to other files, always make them relative to your `/pages` subfoler.
 
