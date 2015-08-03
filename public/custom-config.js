@@ -25,6 +25,11 @@ var DynamicENV = {
   // default: '..'
   pageindexPath: '..',
 
+  // documentIndexHeader (string)
+  // header text to be displayed on "/" index page
+  // default: 'markdown document index'
+  documentIndexHeader: 'markdown document index',
+
   // showAboutPageLink
   // showSyntaxPageLink
   // appTitle = 'markdownBrauser'

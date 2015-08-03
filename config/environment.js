@@ -7,6 +7,9 @@ module.exports = function(environment) {
     // *** no trailing slashes here: ***
     markdownPath: '../pages',
     pageindexPath: '..',
+    // index ("/") page header text
+    documentIndexHeader: 'markdown document index',
+    //
     // emberjs
     locationType: 'hash',
     modulePrefix: 'markdown-brauser',
