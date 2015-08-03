@@ -7,6 +7,10 @@ module.exports = function(defaults) {
     gzip: {
       enabled: true,  // FIXMEFIXME
       keepUncompressed: true
+    },
+    // http://codesandnotes.com/ember-js/exluding-favicons-from-ember-cli-fingerprinting/
+    fingerprint: {
+      exclude: ['favicon']
     }
   });
 
